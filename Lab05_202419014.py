@@ -102,7 +102,8 @@ class Computer(Device, INetworkable):
 
     def disconnect(self) -> None:
         self._is_connected = False
-self._ip_address = None
+        self._ip_address = None
+
     @property
     def is_connected(self) -> bool:
         return self._is_connected
@@ -201,9 +202,9 @@ class LabRoom:
     def add_device(self, device: Device) -> None:
         if device is None:
             raise ValueError("Không chấp nhận thiết bị null")
-           for d in self._devices:
+        for d in self._devices:
             if d.device_id == device.device_id:
-                raise ValueError(f"Đã tồn tại thiết bị mã {device.device_id} trong phòng")
+              raise ValueError(f"Đã tồn tại thiết bị mã {device.device_id} trong phòng")
         self._devices.append(device)
 
     def remove_device(self, device_id: str) -> bool:
@@ -224,13 +225,11 @@ class LabRoom:
         for device in self._devices:
              total += device.calculate_annual_maintenance_cost()
         return total
-
     def get_devices_requiring_maintenance(self) -> List[Device]:
         result = []
         for device in self._devices:
-            if device.status == DeviceStatus.UnderMaintenance:
-                or device.years_in_use() > 5):
-                result.append(device)
+             if device.status == DeviceStatus.UnderMaintenance or device.years_in_use() > 5:
+                 result.append(device)
         return result
 
     def list_devices(self) -> None:
