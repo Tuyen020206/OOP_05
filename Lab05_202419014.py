@@ -1,6 +1,6 @@
 """
-MSSV: 202418859
-Họ tên: Lê Hùng Cường
+MSSV: 202419014
+Họ tên: Đào Văn Tuyến
 HỆ THỐNG QUẢN LÝ THIẾT BỊ
 """
 
