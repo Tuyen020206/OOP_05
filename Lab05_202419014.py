@@ -201,9 +201,9 @@ class LabRoom:
     def add_device(self, device: Device) -> None:
         if device is None:
             raise ValueError("Không chấp nhận thiết bị null")
-            for d in self._devices:
-        if d.device_id == device.device_id:
-            raise ValueError(f"Đã tồn tại thiết bị mã {device.device_id} trong phòng")
+           for d in self._devices:
+            if d.device_id == device.device_id:
+                raise ValueError(f"Đã tồn tại thiết bị mã {device.device_id} trong phòng")
         self._devices.append(device)
 
     def remove_device(self, device_id: str) -> bool:
@@ -222,18 +222,14 @@ class LabRoom:
     def calculate_annual_maintenance_cost(self) -> float:
         total = 0.0
         for device in self._devices:
-            if isinstance(device, Computer):
-                total += device.calculate_annual_maintenance_cost()
-            elif isinstance(device, Printer):
-                total += device.calculate_annual_maintenance_cost()
-            elif isinstance(device, Projector):
-                total += device.calculate_annual_maintenance_cost()
+             total += device.calculate_annual_maintenance_cost()
         return total
 
     def get_devices_requiring_maintenance(self) -> List[Device]:
         result = []
         for device in self._devices:
             if device.status == DeviceStatus.UnderMaintenance:
+                or device.years_in_use() > 5):
                 result.append(device)
         return result
 
